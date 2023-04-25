@@ -225,7 +225,7 @@ function SidebarMenu() {
                     onClick={closeSidebar}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
-                    知识图谱
+                    运维对象知识图谱
                   </Button>
                 </NextLink>
               </ListItem>
@@ -241,7 +241,7 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              数据展示
+              故障检测
             </ListSubheader>
           }
         >
@@ -258,7 +258,7 @@ function SidebarMenu() {
                     onClick={closeSidebar}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
-                    时间序列（日志）数据的故障检测
+                    时间序列数据的故障检测
                   </Button>
                 </NextLink>
               </ListItem>
@@ -273,7 +273,7 @@ function SidebarMenu() {
                     onClick={closeSidebar}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
-                    日志
+                    日志数据的故障检测
                   </Button>
                 </NextLink>
               </ListItem>
@@ -285,7 +285,7 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              异常检测
+              故障告警
             </ListSubheader>
           }
         >
@@ -302,7 +302,22 @@ function SidebarMenu() {
                     onClick={closeSidebar}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
-                    告警信息
+                    时间序列数据检测的故障告警
+                  </Button>
+                </NextLink>
+              </ListItem>
+              <ListItem component="div">
+                <NextLink href="/exception/warninginfo" passHref>
+                  <Button
+                    className={
+                      currentRoute === '/exception/warninginfo' ? 'active' : ''
+                    }
+                    disableRipple
+                    component="a"
+                    onClick={closeSidebar}
+                    startIcon={<BrightnessLowTwoToneIcon />}
+                  >
+                    日志数据检测的故障检测
                   </Button>
                 </NextLink>
               </ListItem>

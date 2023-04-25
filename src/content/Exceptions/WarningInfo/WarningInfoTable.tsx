@@ -395,7 +395,7 @@ const Results: FC<TableProps> = ({ warningInfos }) => {
                         </TableCell>
                         <TableCell>
                           <Typography noWrap>
-                            {format(warningInfo.time, 'yyyy-MM-dd hh:mm:ss')}
+                            {format(warningInfo.time, '2023-MM-dd hh:mm:ss')}
                           </Typography>
                         </TableCell>
                         <TableCell>

@@ -106,6 +106,28 @@ function LogPage() {
                   alignItems="stretch"
                   spacing={10}
                 >
+                  <Grid item xs={3}>
+                    <FormControl sx={{ m: 1, minWidth: 200 }}>
+                      <InputLabel id="demo-simple-select-helper-label">
+                        Datatype
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        value={dataset}
+                        label="Age"
+                        onChange={handleDatasetChange}
+                      >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={"Normal"}>Normal</MenuItem>
+                        <MenuItem value={"Abnormal"}>Abnormal</MenuItem>
+                        {/* <MenuItem value={"HDFS"}>HDFS</MenuItem> */}
+                      </Select>
+                      <FormHelperText>在此处选择数据类型</FormHelperText>
+                    </FormControl>
+                  </Grid>
                   <Grid item xs={4}>
                     <FormControl sx={{ m: 1, minWidth: 200 }}>
                       <InputLabel id="demo-simple-select-helper-label">
@@ -121,7 +143,8 @@ function LogPage() {
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={"BGL"}>BGL</MenuItem>
+                        <MenuItem value={"BGL-cartservice"}>BGL-cartservice</MenuItem>
+                        <MenuItem value={"BGL-hs_shop"}>BGL-hs_shop</MenuItem>
                         {/* <MenuItem value={"HDFS"}>HDFS</MenuItem> */}
                       </Select>
                       <FormHelperText>在此处选择数据集</FormHelperText>
@@ -142,8 +165,8 @@ function LogPage() {
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={"LogAnomaly"}>LogAnomaly</MenuItem>
-                        <MenuItem value={"DeepLog"}>DeepLog</MenuItem>
+                        <MenuItem value={"LogAnomaly"}>LogAttention</MenuItem>
+                        {/* <MenuItem value={"DeepLog"}>DeepLog</MenuItem> */}
                       </Select>
                       <FormHelperText>在此处选择模型</FormHelperText>
                     </FormControl>

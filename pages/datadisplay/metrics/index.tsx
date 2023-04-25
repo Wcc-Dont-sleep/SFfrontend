@@ -16,10 +16,12 @@ import { useState, useEffect, useCallback } from 'react';
 import { useRefMounted } from 'src/hooks/useRefMounted';
 import { timeSeriesApi } from 'src/apis/TimeSeriesApi';
 import type { TimeSeriesDisplay } from 'src/models/timeseries';
+import Link from 'src/components/Link';
 
 function MetricsPage() {
   const isMountedRef = useRefMounted();
   const theme = useTheme();
+  const [datatype, setDatatype] = useState('Normal');
   const [dataset, setDataset] = useState('运维系统2');
   const [model, setModel] = useState('CNN');
   const [displayValue, setDisplayValue] = useState<TimeSeriesDisplay>(null);
@@ -102,15 +104,36 @@ function MetricsPage() {
               </Typography>
                 <Grid
                   sx={{
-                    px: 4
+                    px: 3
                   }}
                   container
                   direction="row"
                   justifyContent="center"
                   alignItems="stretch"
-                  spacing={10}
+                  spacing={5}
                 >
-                  <Grid item xs={4}>
+                  <Grid item xs={3}>
+                    <FormControl sx={{ m: 1, minWidth: 200 }}>
+                      <InputLabel id="demo-simple-select-helper-label">
+                        DataType
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        value={datatype}
+                        label="Age"
+                        onChange={handleDatasetChange}
+                      >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={"Normal"}>Normal</MenuItem>
+                        <MenuItem value={"Abnormal"}>Abnormal</MenuItem>
+                      </Select>
+                      <FormHelperText>在此处选择数据类型</FormHelperText>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={3}>
                     <FormControl sx={{ m: 1, minWidth: 200 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Dataset
@@ -125,13 +148,14 @@ function MetricsPage() {
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={"HipsterShop"}>运维系统1（HipsterShop）</MenuItem>
-                        <MenuItem value={"AIOps"}>运维系统2</MenuItem>
+                        <MenuItem value={"adservice"}>运维系统数据集-adservice</MenuItem>
+                        <MenuItem value={"cartservice"}>运维系统数据集-cartservice</MenuItem>
+                        {/* <MenuItem value={"AIOps"}>运维系统2</MenuItem> */}
                       </Select>
                       <FormHelperText>在此处选择数据集</FormHelperText>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={4}>
+                  <Grid item xs={3}>
                     <FormControl sx={{ m: 1, minWidth: 200 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Model
@@ -146,20 +170,40 @@ function MetricsPage() {
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={"LSTM"}>LSTM</MenuItem>
+                        <MenuItem value={"SAT-CNN"}>SAT-CNN</MenuItem>
                         {/* <MenuItem value={"Transformer"}>Transformer</MenuItem> */}
-                        <MenuItem value={"CNN"}>CNN</MenuItem>
+                        {/* <MenuItem value={"CNN"}>LogAttention</MenuItem> */}
                       </Select>
                       <FormHelperText>在此处选择模型</FormHelperText>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={4} sx={{mt: 1}}>
+                  <Grid item xs={3} sx={{mt: 1}}>
                   <Button 
                   variant="outlined"
                   onClick={(_) => setTrigger(!trigger)}
                   disabled={!dataset || !model}
                   >
                     异常检测
+                    </Button>
+
+                    {/* 异常分数： */}
+                    {/* {"   "+displayValue.series[0].score+'\n'} */}
+                  </Grid>
+                  <Grid item xs={3} sx={{mt: 1}}>
+                  <Button 
+                  variant="outlined"
+                  // onClick={(_) => setTrigger(!trigger)}
+                  disabled={!dataset || !model}
+                  >                                
+                  <Link
+                  onClick={() => {
+                    window.localStorage.setItem("selected_entity_id","grafana")
+                    //console.log(warningInfo.entity_name)
+                  }}
+                  href='/knowledge/graph'
+                  >                                
+                    跳转到知识图谱
+                    </Link>
                     </Button>
                   </Grid>
                 </Grid>

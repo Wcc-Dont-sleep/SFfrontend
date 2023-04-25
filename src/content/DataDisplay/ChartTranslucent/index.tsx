@@ -20,6 +20,21 @@ import type { ApexOptions } from 'apexcharts';
 function Activity({labels,metricData,scoreData}:{labels: string[], metricData: number[] ,scoreData: number[]}) {
   const theme = useTheme();
 
+   
+  const chartDataa = {
+    series: [{
+      name: 'sales',
+      data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+    }],
+    options: {
+      chart: {
+        type: 'line',
+      },
+      xaxis: {
+        categories: {labels}
+      }
+    }
+  }
   const chartOptions: ApexOptions = {
     chart: {
       background: 'transparent',
@@ -65,8 +80,9 @@ function Activity({labels,metricData,scoreData}:{labels: string[], metricData: n
       show: true
     },
     xaxis: {
+      categories:labels,
       axisBorder: {
-        show: false
+        show: true
       },
       labels: {
         show: true
@@ -105,6 +121,11 @@ function Activity({labels,metricData,scoreData}:{labels: string[], metricData: n
       name: '异常分数',
       data: scoreData
     }
+    // {
+    //   type: 'line',
+    //   name: 'time',
+    //   data: labels
+    // }
   ];
 
   return (
@@ -123,7 +144,7 @@ function Activity({labels,metricData,scoreData}:{labels: string[], metricData: n
               fontWeight="bold"
               color="text.secondary"
             >
-              ({'某某指标'})
+              {/* ({'某某指标'}) */}
             </Typography>
           </>
         }

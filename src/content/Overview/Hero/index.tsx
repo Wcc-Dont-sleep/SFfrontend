@@ -107,8 +107,16 @@ function Hero() {
         <Grid item md={10} lg={8} mx="auto">
           <LabelWrapper color="success">Version 1.0.0</LabelWrapper>
           <TypographyH1 sx={{ mb: 2 }} variant="h1">
-          Hipster Shop 运维知识图谱原型
+          日志与时间序列的故障检测模型检测系统故障状态原型
           </TypographyH1>
+          <TypographyH2
+            sx={{ lineHeight: 2.5, pb: 3 }}
+            variant="h3"
+            color="text.secondary"
+            fontWeight="normal"
+          >
+            （通过知识图谱抽象再现系统架构并进行故障定位）
+          </TypographyH2>
           <TypographyH2
             sx={{ lineHeight: 1.5, pb: 4 }}
             variant="h4"
