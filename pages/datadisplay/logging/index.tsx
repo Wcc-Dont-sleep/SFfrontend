@@ -74,9 +74,9 @@ function LogPage() {
         direction="row"
         justifyContent="center"
         alignItems="stretch"
-        spacing={4}
+        spacing={2}
       >
-        <Grid item xs={12}>
+        <Grid item xs={24}>
           <Card
             variant="outlined"
             sx={{
@@ -105,16 +105,16 @@ function LogPage() {
               </Typography>
                 <Grid
                   sx={{
-                    px: 4
+                    px: 2
                   }}
                   container
                   direction="row"
                   justifyContent="center"
                   alignItems="stretch"
-                  spacing={10}
+                  spacing={3}
                 >
-                  <Grid item xs={3}>
-                    <FormControl sx={{ m: 1, minWidth: 200 }}>
+                  <Grid item xs={2}>
+                    <FormControl sx={{ m: 1, minWidth: 150 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Datatype
                       </InputLabel>
@@ -135,8 +135,8 @@ function LogPage() {
                       <FormHelperText>在此处选择数据类型</FormHelperText>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={3}>
-                    <FormControl sx={{ m: 1, minWidth: 200 }}>
+                  <Grid item xs={2}>
+                    <FormControl sx={{ m: 1, minWidth: 150 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Dataset
                       </InputLabel>
@@ -157,8 +157,8 @@ function LogPage() {
                       <FormHelperText>在此处选择数据集</FormHelperText>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={3}>
-                    <FormControl sx={{ m: 1, minWidth: 200 }}>
+                  <Grid item xs={2}>
+                    <FormControl sx={{ m: 1, minWidth: 150 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Model
                       </InputLabel>
@@ -178,7 +178,7 @@ function LogPage() {
                       <FormHelperText>在此处选择模型</FormHelperText>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={4} sx={{mt: 1}}>
+                  <Grid item xs={2} sx={{mt: 1}}>
                     <Button 
                     variant="outlined"
                     disabled={!dataset || !model||!datatype}
@@ -187,7 +187,7 @@ function LogPage() {
                       异常检测
                     </Button>
                   </Grid>
-                  <Grid item xs={3} sx={{mt: 1}}>
+                  <Grid item xs={2} sx={{mt: 1}}>
                   <Button 
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}
@@ -204,7 +204,7 @@ function LogPage() {
                     </Link>
                     </Button>
                   </Grid>
-                  <Grid item xs={3} sx={{mt: 1}}>
+                  <Grid item xs={2} sx={{mt: 1}}>
                   <Button 
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}
@@ -235,8 +235,6 @@ function LogPage() {
             />
               ) : null
             }
-        </Grid>
-        <Grid item lg={12} xs={12}>
         </Grid>
       </Grid>
     </>
