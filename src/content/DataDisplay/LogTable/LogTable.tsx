@@ -290,32 +290,30 @@ const LogTable: FC<TableProps> = ({ logs, probability, threshold }) => {
                 <TableHead>
                   <TableRow>
                     {/* <TableCell>{t('#')}</TableCell> */}
-                    <TableCell>{t('lineid')}</TableCell>
+                    <TableCell>{t('log_name')}</TableCell>
                     <TableCell>{t('isError')}</TableCell>
                     <TableCell>{t('Component')}</TableCell>
                     <TableCell>{t('Content')}</TableCell>
-                    <TableCell>{t('date')}</TableCell>
-                    <TableCell>{t('level')}</TableCell>
                     <TableCell>{t('time')}</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {paginatedLogs.map((log) => {
-                    const isLogSelected = selectedLogs.includes(parseInt(log.lineId));
+                    const isLogSelected = selectedLogs.includes(parseInt(log.f1));
                     return (
-                      <TableRow hover key={log.time} selected={isLogSelected}>
+                      <TableRow hover key={log.timestamp} selected={isLogSelected}>
                         <TableCell>
                           <Box display="flex" alignItems="center">
                             <Checkbox
                               checked={isLogSelected}
                               onChange={(event) =>
-                                handleSelectOneWarning(event, parseInt(log.lineId))
+                                handleSelectOneWarning(event, parseInt(log.f1))
                               }
                               value={isLogSelected}
                             />
                             <Box pl={1}>
                               <Typography noWrap variant="subtitle2">
-                                {log.lineId}
+                                {log.log_name}
                               </Typography>
                             </Box>
                           </Box>
@@ -357,10 +355,11 @@ const LogTable: FC<TableProps> = ({ logs, probability, threshold }) => {
                         </TableCell>
                         <TableCell>
                           <Typography noWrap>
-                            {log.date}
+                          {log.timestamp}
+                          {/* {format(parseInt(log.timestamp), '2022-MM-dd hh:mm:ss')} */}
                           </Typography>
                         </TableCell>
-                        <TableCell>
+                        {/* <TableCell>
                           <Typography 
                           color={threshold ? (
                             log.isError != 'False'  ? "error" : "success"
@@ -374,7 +373,7 @@ const LogTable: FC<TableProps> = ({ logs, probability, threshold }) => {
                         <Typography noWrap>
                             {log.time}
                           </Typography>
-                          </TableCell>
+                          </TableCell> */}
                         {/* <TableCell align="center">
                           <Typography noWrap>
                             <Tooltip title={t('View')} arrow>

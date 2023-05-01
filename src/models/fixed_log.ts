@@ -12,6 +12,7 @@ export interface Logging {
     // time:    number;
 //new
     f1: string,
+    log_name: string;
     lineId: string;
     label: string;
     timestamp: string;

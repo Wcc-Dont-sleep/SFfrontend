@@ -115,7 +115,7 @@ const applyFilters = (
       let containsQuery = false;
 
       properties.forEach((property) => {
-        if (warningInfo[property].toLowerCase().includes(query.toLowerCase())) {
+        if (warningInfo[property]==query) {
           containsQuery = true;
         }
       });
@@ -252,6 +252,17 @@ const Results: FC<TableProps> = ({ warningInfos }) => {
     // });
   };
 
+  const selectInfo=(info:string)=>{
+      let mystored=window.localStorage.getItem('selected_entity_id')
+      if (mystored){
+        if (info==mystored){
+          return true
+        }
+        else{
+          return false
+        }
+      }
+  }
   return (
     <>
       <Card

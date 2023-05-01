@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { useState, useEffect, useCallback } from 'react';
-import { useRefMounted } from 'src/hooks/useRefMounted';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -12,41 +10,22 @@ import PageHeader from '@/components/PageHeader';
 import PageTitleWrapper from 'src/components/PageTitleWrapper';
 import { Grid, Typography, useTheme, Box, alpha, Card, Button } from '@mui/material';
 import NotificationImportantTwoToneIcon from '@mui/icons-material/NotificationImportantTwoTone';
-import LogTable from '@/content/DataDisplay/LogTable/LogTable';
-import { loggingApi } from '@/apis/LoggingApi';
-import { FixedLogs } from 'src/models/fixed_log';
+import ChartTranslucent from 'src/content/DataDisplay/ChartTranslucent';
+// import SparklineBar from '@/content/DataDisplay/SparklineBar';
+import { useState, useEffect, useCallback } from 'react';
+import { useRefMounted } from 'src/hooks/useRefMounted';
+import { timeSeriesApi } from 'src/apis/TimeSeriesApi';
+import type { TimeSeriesDisplay } from 'src/models/timeseries';
 import Link from 'src/components/Link';
 
-function LogPage() {
+function MetricsPage() {
   const isMountedRef = useRefMounted();
-  const [logs, setLogs] = useState<FixedLogs>(null);
   const theme = useTheme();
-  const[datatype,setDatatype]=React.useState('normal');
-  const [dataset, setDataset] = React.useState('cartservice');
-  const [model, setModel] = React.useState('LogAttention');
-  const [trigger, setTrigger] = React.useState(false);
-
-
-  const getLogs = useCallback(async (dataset, model,datatype, start, end) => {
-    try {
-      const response = await loggingApi.getLogs(dataset, model,datatype, start, end)
-      //console.log(datatype)
-      console.log(11111);
-      console.log(response);
-
-      if (isMountedRef()) {
-        setLogs(response);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }, [isMountedRef]);
-
-
-
-  useEffect(() => {
-    getLogs(dataset, model,datatype, 0, 21474836470);
-  }, [getLogs, trigger]);
+  const [datatype, setDatatype] = useState('Normal');
+  const [dataset, setDataset] = useState('运维系统2');
+  const [model, setModel] = useState('CNN');
+  const [displayValue, setDisplayValue] = useState<TimeSeriesDisplay>(null);
+  const [trigger, setTrigger] = useState<boolean>(false);
 
   const handleDatatypeChange = (event: SelectChangeEvent) => {
     setDatatype(event.target.value);
@@ -58,13 +37,36 @@ function LogPage() {
     setModel(event.target.value);
   };
 
+  const getMetrics = useCallback(async (dataset, model,datatype, start, end) => {
+    try {
+      const response = await timeSeriesApi.getTimeSeries(dataset, model,datatype, start, end);
+
+      if (isMountedRef()) {
+        // setWarningInfos(response);
+        setDisplayValue(response);
+
+        console.log(response);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }, [isMountedRef]);
+
+  useEffect(() => {
+    getMetrics(dataset, model,datatype, 1672409895, 1672699695);
+  }, [getMetrics, trigger]);
+
+  if (displayValue === null) {
+    return null;
+  }
+
   return (
     <>
       <Head>
-        <title>Logging - DataDisplay</title>
+        <title>Metrics - DataDisplay</title>
       </Head>
       <PageTitleWrapper>
-        {PageHeader('Logging', 'Logging 时间序列和异常分数')}
+        {PageHeader('Metrics', 'Metrics 时间序列和异常分数')}
       </PageTitleWrapper>
       <Grid
         sx={{
@@ -105,18 +107,18 @@ function LogPage() {
               </Typography>
                 <Grid
                   sx={{
-                    px: 4
+                    px: 3
                   }}
                   container
                   direction="row"
                   justifyContent="center"
                   alignItems="stretch"
-                  spacing={10}
+                  spacing={5}
                 >
                   <Grid item xs={3}>
                     <FormControl sx={{ m: 1, minWidth: 200 }}>
                       <InputLabel id="demo-simple-select-helper-label">
-                        Datatype
+                        DataType
                       </InputLabel>
                       <Select
                         labelId="demo-simple-select-helper-label"
@@ -128,9 +130,8 @@ function LogPage() {
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={"normal"}>Normal</MenuItem>
-                        <MenuItem value={"abnormal"}>Abnormal</MenuItem>
-                        {/* <MenuItem value={"HDFS"}>HDFS</MenuItem> */}
+                        <MenuItem value={"Normal"}>Normal</MenuItem>
+                        <MenuItem value={"Abnormal"}>Abnormal</MenuItem>
                       </Select>
                       <FormHelperText>在此处选择数据类型</FormHelperText>
                     </FormControl>
@@ -150,9 +151,9 @@ function LogPage() {
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={"cartservice"}>BGL-cartservice</MenuItem>
-                        <MenuItem value={"hs_shop"}>BGL-adservice</MenuItem>
-                        {/* <MenuItem value={"HDFS"}>HDFS</MenuItem> */}
+                        <MenuItem value={"adservice"}>运维系统数据集-adservice</MenuItem>
+                        <MenuItem value={"cartservice"}>运维系统数据集-cartservice</MenuItem>
+                        {/* <MenuItem value={"AIOps"}>运维系统2</MenuItem> */}
                       </Select>
                       <FormHelperText>在此处选择数据集</FormHelperText>
                     </FormControl>
@@ -172,30 +173,34 @@ function LogPage() {
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={"LogAttention"}>LogAttention</MenuItem>
-                        {/* <MenuItem value={"DeepLog"}>DeepLog</MenuItem> */}
+                        <MenuItem value={"SAT-CNN"}>SAT-CNN</MenuItem>
+                        {/* <MenuItem value={"Transformer"}>Transformer</MenuItem> */}
+                        {/* <MenuItem value={"CNN"}>LogAttention</MenuItem> */}
                       </Select>
                       <FormHelperText>在此处选择模型</FormHelperText>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={4} sx={{mt: 1}}>
-                    <Button 
-                    variant="outlined"
-                    disabled={!dataset || !model||!datatype}
-                    onClick={(_) => setTrigger(!trigger)}
-                    >
-                      异常检测
+                  <Grid item xs={3} sx={{mt: 1}}>
+                  <Button 
+                  variant="outlined"
+                  onClick={(_) => setTrigger(!trigger)}
+                  disabled={!dataset || !model}
+                  >
+                    异常检测
                     </Button>
+
+                    {/* 异常分数： */}
+                    {/* {"   "+displayValue.series[0].score+'\n'} */}
                   </Grid>
                   <Grid item xs={3} sx={{mt: 1}}>
                   <Button 
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}
-                  disabled={!dataset || !model||!datatype}
+                  disabled={!dataset || !model}
                   >                                
                   <Link
                   onClick={() => {
-                    window.localStorage.setItem("selected_entity_id",dataset)
+                    window.localStorage.setItem("selected_entity_id","grafana")
                     //console.log(warningInfo.entity_name)
                   }}
                   href='/knowledge/graph'
@@ -204,45 +209,25 @@ function LogPage() {
                     </Link>
                     </Button>
                   </Grid>
-                  <Grid item xs={3} sx={{mt: 1}}>
-                  <Button 
-                  variant="outlined"
-                  // onClick={(_) => setTrigger(!trigger)}
-                  disabled={!dataset || !model||!datatype}
-                  >                                
-                  <Link
-                  onClick={() => {
-                    window.localStorage.setItem("selected_entity_id",dataset)
-                    //console.log(warningInfo.entity_name)
-                  }}
-                  href='/exception/warninginfo'
-                  >                                
-                    跳转到告警信息
-                    </Link>
-                    </Button>
-                  </Grid>
                 </Grid>
             </Box>
           </Card>
         </Grid>
         <Grid item lg={12} xs={12}>
-            {
-              logs && logs.logging ? (
-                <LogTable 
-            logs={logs.logging}
-            threshold={logs.threshold}
-            probability={logs.probability}
+        <ChartTranslucent
+            labels={displayValue.series.map((v) => v.time.toString())}
+            metricData={displayValue.series.map((v) => v.value)}
+            scoreData={displayValue.series.map((v) => v.score)}
             />
-              ) : null
-            }
         </Grid>
         <Grid item lg={12} xs={12}>
+          {/* <SparklineBar /> */}
         </Grid>
       </Grid>
     </>
   );
 }
 
-LogPage.getLayout = (page) => <SidebarLayout>{page}</SidebarLayout>;
+MetricsPage.getLayout = (page) => <SidebarLayout>{page}</SidebarLayout>;
 
-export default LogPage;
+export default MetricsPage;

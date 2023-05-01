@@ -21,9 +21,10 @@ import Link from 'src/components/Link';
 function MetricsPage() {
   const isMountedRef = useRefMounted();
   const theme = useTheme();
-  const [datatype, setDatatype] = useState('Normal');
+  //const [datatype, setDatatype] = useState('Normal');
   const [dataset, setDataset] = useState('运维系统2');
   const [model, setModel] = useState('CNN');
+  const [status, setStatus] = useState('Normal');
   const [displayValue, setDisplayValue] = useState<TimeSeriesDisplay>(null);
   const [trigger, setTrigger] = useState<boolean>(false);
 
@@ -33,10 +34,13 @@ function MetricsPage() {
   const handleModelChange = (event: SelectChangeEvent) => {
     setModel(event.target.value);
   };
+  const handleStatusChange = (event: SelectChangeEvent) => {
+    setStatus(event.target.value);
+  };
 
-  const getMetrics = useCallback(async (dataset, model, start, end) => {
+  const getMetrics = useCallback(async (dataset, model, status,start, end) => {
     try {
-      const response = await timeSeriesApi.getTimeSeries(dataset, model, start, end);
+      const response = await timeSeriesApi.getTimeSeries(dataset, model, status,start, end);
 
       if (isMountedRef()) {
         // setWarningInfos(response);
@@ -50,7 +54,7 @@ function MetricsPage() {
   }, [isMountedRef]);
 
   useEffect(() => {
-    getMetrics(dataset, model, 1672409895, 1672699695);
+    getMetrics(dataset, model, status,1672409895, 1672699695);
   }, [getMetrics, trigger]);
 
   if (displayValue === null) {
@@ -120,15 +124,15 @@ function MetricsPage() {
                       <Select
                         labelId="demo-simple-select-helper-label"
                         id="demo-simple-select-helper"
-                        value={datatype}
+                        value={status}
                         label="Age"
-                        onChange={handleDatasetChange}
+                        onChange={handleStatusChange}
                       >
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={"Normal"}>Normal</MenuItem>
-                        <MenuItem value={"Abnormal"}>Abnormal</MenuItem>
+                        <MenuItem value={"normal"}>Normal</MenuItem>
+                        <MenuItem value={"abnormal"}>Abnormal</MenuItem>
                       </Select>
                       <FormHelperText>在此处选择数据类型</FormHelperText>
                     </FormControl>
@@ -181,7 +185,7 @@ function MetricsPage() {
                   <Button 
                   variant="outlined"
                   onClick={(_) => setTrigger(!trigger)}
-                  disabled={!dataset || !model}
+                  disabled={!dataset || !model||!status}
                   >
                     异常检测
                     </Button>
@@ -193,16 +197,40 @@ function MetricsPage() {
                   <Button 
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}
-                  disabled={!dataset || !model}
+                  disabled={!dataset || !model||!status}
                   >                                
                   <Link
                   onClick={() => {
-                    window.localStorage.setItem("selected_entity_id","grafana")
+                    if(dataset=="adservice")
+                        window.localStorage.setItem("selected_entity_id","adservice")
+                    else if(dataset=="cartservice")
+                        window.localStorage.setItem("selected_entity_id","cartservice")
                     //console.log(warningInfo.entity_name)
                   }}
                   href='/knowledge/graph'
                   >                                
                     跳转到知识图谱
+                    </Link>
+                    </Button>
+                  </Grid>
+                  
+                  <Grid item xs={3} sx={{mt: 1}}>
+                  <Button 
+                  variant="outlined"
+                  // onClick={(_) => setTrigger(!trigger)}
+                  disabled={!dataset || !model||!status}
+                  >                                
+                  <Link
+                  onClick={() => {
+                    if(dataset=="adservice")
+                        window.localStorage.setItem("selected_entity_id","adservice")
+                    else if(dataset=="cartservice")
+                        window.localStorage.setItem("selected_entity_id","cartservice")
+                    //console.log(warningInfo.entity_name)
+                  }}
+                  href='/exception/warninginfo'
+                  >                                
+                    跳转到告警信息
                     </Link>
                     </Button>
                   </Grid>

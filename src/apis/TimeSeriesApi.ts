@@ -2,12 +2,13 @@ import type { TimeSeriesDisplay, TimeSeriesValue } from "@/models/timeseries";
 import { GetApi } from "@/utils/requests";
 
 class TimeSeriesApi {
-    public getTimeSeries: (arg0: string, arg1: string, arg2: number, arg3: number) => Promise<TimeSeriesDisplay>
-    = async (dataset: string, model: string, time_start: number, time_end: number) => {
-        console.log(dataset, model);
-        const r = (await GetApi('/metricdb', {
+    public getTimeSeries: (arg0: string, arg1: string, arg2:string,arg3: number, arg4: number) => Promise<TimeSeriesDisplay>
+    = async (dataset: string, model: string,status:string, time_start: number, time_end: number) => {
+        console.log(dataset, model,status);
+        const r = (await GetApi('/metric', {
             dataset,
             model,
+            status,
             time_start,
             time_end
         })).data as TimeSeriesDisplay;

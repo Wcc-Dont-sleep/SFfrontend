@@ -143,7 +143,11 @@ const options = {
 };
 
 const get_red = (node: Node)=>{
-  if (node.id===window.localStorage.getItem('selected_entity_id'))
+  let mystored=window.localStorage.getItem('selected_entity_id')
+  if (mystored=="hs_shop"){
+    mystored="hipster shop"
+  }
+  if (node.id==mystored)
   {
     return 'selected'
   }
@@ -304,6 +308,9 @@ function AccountBalance() {
 
         let stored = window.localStorage.getItem('selected_entity_id')
         //let tored=window.localStorage.getItem('')
+        if (stored=="hs_shop"){
+          stored="hipster shop"
+        }
         if (stored) {
           let node = origin.nodes.find((o => o.id === stored));
 

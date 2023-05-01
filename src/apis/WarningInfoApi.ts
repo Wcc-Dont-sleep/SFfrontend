@@ -11,6 +11,14 @@ class WarningInfoApi {
         })).data;
         return r as WarningInfo[];
     };
+    
+    // public getWarningsStatus: (arg0: string )=> Promise<WarningInfo[]>
+    // = async (entityName: string) => {
+    //     const r = (await GetApi('/alert/entity', {
+    //         entityName
+    //     })).data;
+    //     return r as WarningInfo[];
+    // };
 
     getWarningInfos: () => Promise<WarningInfo[]> = async () => {
         return [

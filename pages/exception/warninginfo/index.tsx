@@ -31,6 +31,18 @@ function WarningInformationPage() {
     }
   }, [isMountedRef]);
 
+  // const getWarningInfosStatus = useCallback(async () => {
+  //   try {
+  //     const response = await warningInfoApi.getWarningsStatus(window.localStorage.getItem('selected_entity_id'));
+
+  //     if (isMountedRef()) {
+  //       setWarningInfos(response);
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }, [isMountedRef]);
+
   useEffect(() => {
     getWarningInfos();
   }, [getWarningInfos]);

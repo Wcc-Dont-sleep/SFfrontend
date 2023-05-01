@@ -3,6 +3,7 @@ export interface Log {
      * 日志内容
      */
      f1: string,
+     log_name:string,
      lineId: string,
      label: string,
      timestamp: string,
@@ -38,6 +39,7 @@ export interface LogNode {
      * 日志内容
      */
      f1: string,
+     log_name:string,
      lineId: string,
      label: string,
      timestamp: string,

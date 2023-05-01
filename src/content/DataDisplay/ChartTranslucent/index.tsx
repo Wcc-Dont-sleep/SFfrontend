@@ -113,7 +113,7 @@ function Activity({labels,metricData,scoreData}:{labels: string[], metricData: n
   const chartData = [
     {
       type: 'line',
-      name: '值',
+      name: '值(单位：query per second)',
       data: metricData
     },
     {
