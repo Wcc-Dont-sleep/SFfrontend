@@ -74,9 +74,9 @@ function LogPage() {
         direction="row"
         justifyContent="center"
         alignItems="stretch"
-        spacing={2}
+        spacing={6}
       >
-        <Grid item xs={24}>
+        <Grid item xs={12}>
           <Card
             variant="outlined"
             sx={{
@@ -105,16 +105,16 @@ function LogPage() {
               </Typography>
                 <Grid
                   sx={{
-                    px: 2
+                    px: 3
                   }}
                   container
                   direction="row"
                   justifyContent="center"
                   alignItems="stretch"
-                  spacing={3}
+                  spacing={6}
                 >
                   <Grid item xs={2}>
-                    <FormControl sx={{ m: 1, minWidth: 150 }}>
+                    <FormControl sx={{ m: 1, minWidth: 200 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Datatype
                       </InputLabel>
@@ -136,7 +136,7 @@ function LogPage() {
                     </FormControl>
                   </Grid>
                   <Grid item xs={2}>
-                    <FormControl sx={{ m: 1, minWidth: 150 }}>
+                    <FormControl sx={{ m: 1, minWidth: 200 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Dataset
                       </InputLabel>
@@ -150,15 +150,15 @@ function LogPage() {
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={"cartservice"}>BGL-cartservice</MenuItem>
-                        <MenuItem value={"hs_shop"}>BGL-adservice</MenuItem>
+                        <MenuItem value={"cartservice"}>运维系统数据集-cartservice</MenuItem>
+                        <MenuItem value={"hs_shop"}>运维系统数据集-adservice</MenuItem>
                         {/* <MenuItem value={"HDFS"}>HDFS</MenuItem> */}
                       </Select>
                       <FormHelperText>在此处选择数据集</FormHelperText>
                     </FormControl>
                   </Grid>
                   <Grid item xs={2}>
-                    <FormControl sx={{ m: 1, minWidth: 150 }}>
+                    <FormControl sx={{ m: 1, minWidth: 200 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Model
                       </InputLabel>

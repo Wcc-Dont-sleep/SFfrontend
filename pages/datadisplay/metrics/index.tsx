@@ -116,7 +116,7 @@ function MetricsPage() {
                   alignItems="stretch"
                   spacing={5}
                 >
-                  <Grid item xs={3}>
+                  <Grid item xs={2}>
                     <FormControl sx={{ m: 1, minWidth: 200 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         DataType
@@ -137,7 +137,7 @@ function MetricsPage() {
                       <FormHelperText>在此处选择数据类型</FormHelperText>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={3}>
+                  <Grid item xs={2}>
                     <FormControl sx={{ m: 1, minWidth: 200 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Dataset
@@ -159,7 +159,7 @@ function MetricsPage() {
                       <FormHelperText>在此处选择数据集</FormHelperText>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={3}>
+                  <Grid item xs={2}>
                     <FormControl sx={{ m: 1, minWidth: 200 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Model
@@ -181,7 +181,7 @@ function MetricsPage() {
                       <FormHelperText>在此处选择模型</FormHelperText>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={3} sx={{mt: 1}}>
+                  <Grid item xs={2} sx={{mt: 1}}>
                   <Button 
                   variant="outlined"
                   onClick={(_) => setTrigger(!trigger)}
@@ -193,7 +193,7 @@ function MetricsPage() {
                     {/* 异常分数： */}
                     {/* {"   "+displayValue.series[0].score+'\n'} */}
                   </Grid>
-                  <Grid item xs={3} sx={{mt: 1}}>
+                  <Grid item xs={2} sx={{mt: 1}}>
                   <Button 
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}
@@ -214,7 +214,7 @@ function MetricsPage() {
                     </Button>
                   </Grid>
                   
-                  <Grid item xs={3} sx={{mt: 1}}>
+                  <Grid item xs={2} sx={{mt: 1}}>
                   <Button 
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}

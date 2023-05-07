@@ -317,7 +317,7 @@ function SidebarMenu() {
                     onClick={closeSidebar}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
-                    日志数据检测的故障检测
+                    日志数据检测的故障告警
                   </Button>
                 </NextLink>
               </ListItem>
