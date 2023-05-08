@@ -184,7 +184,7 @@ function LogPage() {
                     disabled={!dataset || !model||!datatype}
                     onClick={(_) => setTrigger(!trigger)}
                     >
-                      异常检测
+                      异常/故障检测
                     </Button>
                   </Grid>
                   <Grid item xs={2} sx={{mt: 1}}>

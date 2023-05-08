@@ -68,19 +68,13 @@ function Overview() {
               <Box>
                 <Button
                   component={Link}
-                  href="/human_resource/organization"
-                  variant="contained"
-                  sx={{ ml: 2 }}
-                >
-                  用户管理
-                </Button>
-                <Button
-                  variant="contained"
-                  sx={{ ml: 2 }}
                   href="/login"
+                  variant="contained"
+                  sx={{ ml: 2 }}
                 >
-                  {'重新登陆'}
+                  登录
                 </Button>
+                
               </Box>
             </Box>
           </Box>
@@ -90,7 +84,8 @@ function Overview() {
       <Highlights />
       <Container maxWidth="lg" sx={{ mt: 8 }}>
         <Typography textAlign="center" variant="subtitle1">
-          {/* Crafted by{' '} */}
+          {/* Crafted b
+          y{' '} */}
           <Link
             href="https://sse.tongji.edu.cn/"
             target="_blank"

@@ -241,7 +241,7 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              故障检测
+              异常/故障检测
             </ListSubheader>
           }
         >
@@ -258,7 +258,7 @@ function SidebarMenu() {
                     onClick={closeSidebar}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
-                    时间序列数据的故障检测
+                    时间序列数据的异常/故障检测
                   </Button>
                 </NextLink>
               </ListItem>
@@ -273,7 +273,7 @@ function SidebarMenu() {
                     onClick={closeSidebar}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
-                    日志数据的故障检测
+                    日志数据的异常/故障检测
                   </Button>
                 </NextLink>
               </ListItem>
@@ -285,7 +285,7 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              故障告警
+              异常/故障告警
             </ListSubheader>
           }
         >
@@ -302,7 +302,7 @@ function SidebarMenu() {
                     onClick={closeSidebar}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
-                    时间序列数据检测的故障告警
+                    时间序列数据检测的异常/故障告警
                   </Button>
                 </NextLink>
               </ListItem>
@@ -317,7 +317,7 @@ function SidebarMenu() {
                     onClick={closeSidebar}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
-                    日志数据检测的故障告警
+                    日志数据检测的异常/故障告警
                   </Button>
                 </NextLink>
               </ListItem>

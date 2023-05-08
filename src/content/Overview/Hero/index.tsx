@@ -107,7 +107,7 @@ function Hero() {
         <Grid item md={10} lg={8} mx="auto">
           <LabelWrapper color="success">Version 1.0.0</LabelWrapper>
           <TypographyH1 sx={{ mb: 2 }} variant="h1">
-          日志与时间序列的故障检测模型检测系统故障状态原型
+          异常/故障检测模型原型
           </TypographyH1>
           <TypographyH2
             sx={{ lineHeight: 2.5, pb: 3 }}

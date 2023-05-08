@@ -187,7 +187,7 @@ function MetricsPage() {
                   onClick={(_) => setTrigger(!trigger)}
                   disabled={!dataset || !model||!status}
                   >
-                    异常检测
+                    异常/故障检测
                     </Button>
 
                     {/* 异常分数： */}
