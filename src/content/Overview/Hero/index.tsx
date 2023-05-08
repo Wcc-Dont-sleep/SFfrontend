@@ -134,53 +134,7 @@ function Hero() {
             进入系统
           </Button>
 
-          <Grid container spacing={3} mt={5}>
-            <Grid item md={4}>
-              <MuiAvatar>
-                <img
-                  src="/static/images/logo/material-ui.svg"
-                  alt="Material-UI"
-                />
-              </MuiAvatar>
-              <Typography variant="h4">
-                <Box sx={{ pb: 2 }}>
-                  <b>Material-UI 组件库（MUI）</b>
-                </Box>
-                <Typography component="span" variant="subtitle2">
-                  简单且可定制的组件库，易于构建快速、美观的 React 应用。
-                </Typography>
-              </Typography>
-            </Grid>
-            <Grid item md={4}>
-              <NextJsAvatar>
-                <img src="/static/images/logo/next-js.svg" alt="NextJS" />
-              </NextJsAvatar>
-              <Typography variant="h4">
-                <Box sx={{ pb: 2 }}>
-                  <b>Next.js</b>
-                </Box>
-                <Typography component="span" variant="subtitle2">
-                  Next.js 带来的方便数据请求和路由跳转，改善开发体验。
-                </Typography>
-              </Typography>
-            </Grid>
-            <Grid item md={4}>
-              <TsAvatar>
-                <img
-                  src="/static/images/logo/typescript.svg"
-                  alt="Typescript"
-                />
-              </TsAvatar>
-              <Typography variant="h4">
-                <Box sx={{ pb: 2 }}>
-                  <b>基于 Typescript 构建</b>
-                </Box>
-                <Typography component="span" variant="subtitle2">
-                  使用基于 Typescript 的技术栈，静态类型检查带来更好的系统安全性和可维护性。
-                </Typography>
-              </Typography>
-            </Grid>
-          </Grid>
+          
         </Grid>
       </Grid>
     </Container>
