@@ -15,9 +15,9 @@ import {
 } from '@mui/material';
 import { Chart } from 'src/components/Chart';
 import type { ApexOptions } from 'apexcharts';
+import { format } from 'date-fns';
 
-
-function Activity({labels,metricData,scoreData}:{labels: string[], metricData: number[] ,scoreData: number[]}) {
+function Activity({labels,metricData,scoreData,pro}:{labels: string[], metricData: number[] ,scoreData: number[],pro:number[]}) {
   const theme = useTheme();
 
    
@@ -32,6 +32,7 @@ function Activity({labels,metricData,scoreData}:{labels: string[], metricData: n
       },
       xaxis: {
         categories: {labels}
+        
       }
     }
   }
@@ -46,7 +47,7 @@ function Activity({labels,metricData,scoreData}:{labels: string[], metricData: n
       curve: 'smooth',
       width: [3, 3],
       dashArray: [0, 5],
-      colors: [theme.colors.error.main, theme.colors.primary.main]
+      colors: [theme.colors.error.main, theme.colors.primary.main,theme.colors.primary.main]
     },
     fill: {
       opacity: [1, 0.2]
@@ -63,9 +64,9 @@ function Activity({labels,metricData,scoreData}:{labels: string[], metricData: n
       strokeWidth: 2,
       strokeOpacity: 1,
       strokeColors: theme.colors.alpha.white[100],
-      colors: [theme.colors.error.main, theme.colors.primary.main]
+      colors: [theme.colors.error.main, theme.colors.primary.main,theme.colors.primary.main]
     },
-    colors: [theme.colors.error.main, theme.colors.primary.main],
+    colors: [theme.colors.error.main, theme.colors.primary.main,theme.colors.primary.main],
     dataLabels: {
       enabled: false
     },
@@ -120,12 +121,12 @@ function Activity({labels,metricData,scoreData}:{labels: string[], metricData: n
       type: 'area',
       name: '异常分数',
       data: scoreData
+    },
+    {
+      type: 'pro',
+      name: 'probability',
+      data: pro
     }
-    // {
-    //   type: 'line',
-    //   name: 'time',
-    //   data: labels
-    // }
   ];
 
   return (

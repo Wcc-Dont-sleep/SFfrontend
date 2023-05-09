@@ -494,8 +494,8 @@ function AccountBalance() {
                 border: 0,
               }}>
 
-                <Grid container spacing={3}>
-                  <Grid xs={1.5} item
+                {/* <Grid container spacing={3}> */}
+                  {/* <Grid xs={1.5} item
                     display="flex"
                     justifyContent="center"
                     alignItems="center">
@@ -545,8 +545,8 @@ function AccountBalance() {
                     </EndDatePickContext.Provider>
 
 
-                  </Grid>
-                </Grid>
+                  </Grid> */}
+                {/* </Grid> */}
 
 
               </Container>

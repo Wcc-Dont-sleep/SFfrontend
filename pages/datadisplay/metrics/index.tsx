@@ -243,6 +243,7 @@ function MetricsPage() {
             labels={displayValue.series.map((v) => v.time.toString())}
             metricData={displayValue.series.map((v) => v.value)}
             scoreData={displayValue.series.map((v) => v.score)}
+            pro={[...Array(50)].map((x)=>0.216)}
             />
         </Grid>
         <Grid item lg={12} xs={12}>

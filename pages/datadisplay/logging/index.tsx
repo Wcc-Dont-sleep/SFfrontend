@@ -21,9 +21,9 @@ function LogPage() {
   const isMountedRef = useRefMounted();
   const [logs, setLogs] = useState<FixedLogs>(null);
   const theme = useTheme();
-  const[datatype,setDatatype]=React.useState('normal');
-  const [dataset, setDataset] = React.useState('cartservice');
-  const [model, setModel] = React.useState('LogAttention');
+  const[datatype,setDatatype]=React.useState('');
+  const [dataset, setDataset] = React.useState('');
+  const [model, setModel] = React.useState('');
   const [trigger, setTrigger] = React.useState(false);
 
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Component, useState } from 'react';
 import type { FC, ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 
@@ -52,11 +52,11 @@ const applyFilters = (
     let matches = true;
 
     if (query) {
-      const properties = ['f1','lineId','label','timestamp','date','node','time','nodeRepeat','type','component','level','content','isError'];
+      const properties = ['component'];
       let containsQuery = false;
 
       properties.forEach((property) => {
-        if ((log[property]).toString().toLowerCase().includes(query.toLowerCase())) {
+        if (log[property]==query) {
           containsQuery = true;
         }
       });
@@ -312,7 +312,7 @@ const LogTable: FC<TableProps> = ({ logs, probability, threshold }) => {
                               value={isLogSelected}
                             />
                             <Box pl={1}>
-                              <Typography noWrap variant="subtitle2">
+                              <Typography noWrap variant="subtitle2" color={log.status=="abnormal" ? 'red' : 'black'}>
                                 {log.log_name}
                               </Typography>
                             </Box>
@@ -355,8 +355,8 @@ const LogTable: FC<TableProps> = ({ logs, probability, threshold }) => {
                         </TableCell>
                         <TableCell>
                           <Typography noWrap>
-                          {log.timestamp}
-                          {/* {format(parseInt(log.timestamp), '2022-MM-dd hh:mm:ss')} */}
+                          {/* {log.timestamp} */}
+                          {format(parseInt(log.timestamp), '2022-MM-dd hh:mm:ss')}
                           </Typography>
                         </TableCell>
                         {/* <TableCell>

@@ -25,4 +25,5 @@ export interface Logging {
     level: string;
     content: string;
     isError: string;
+    status:string;
 }

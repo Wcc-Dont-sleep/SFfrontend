@@ -1,12 +1,12 @@
 export interface TimeSeriesValue {
     time:  number;
-    score: number
+    score: number;
     value: number;
 }
 
 export interface TimeSeriesDisplay {
     series: TimeSeriesValue[],
-    probability: number
+    probability: string;
 }
 
 export interface TimeSeriesNode {
