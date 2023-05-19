@@ -122,11 +122,11 @@ function Activity({labels,metricData,scoreData,pro}:{labels: string[], metricDat
       name: '异常分数',
       data: scoreData
     },
-    {
-      type: 'pro',
-      name: 'probability',
-      data: pro
-    }
+    // {
+    //   type: 'pro',
+    //   name: 'probability',
+    //   data: pro
+    // }
   ];
 
   return (

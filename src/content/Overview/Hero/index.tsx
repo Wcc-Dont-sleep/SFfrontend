@@ -123,7 +123,7 @@ function Hero() {
             color="text.secondary"
             fontWeight="normal"
           >
-            面向云原生系统微服务应用的运维知识图谱
+            {/* 面向云原生系统微服务应用的运维知识图谱 */}
           </TypographyH2>
           <Button
             component={Link}

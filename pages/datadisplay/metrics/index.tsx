@@ -201,15 +201,18 @@ function MetricsPage() {
                   >                                
                   <Link
                   onClick={() => {
-                    if(dataset=="adservice")
+                    if(status=="abnormal")
+                    {
+                      if(dataset=="adservice"||dataset=="hs_shop")
                         window.localStorage.setItem("selected_entity_id","adservice")
-                    else if(dataset=="cartservice")
+                      else if(dataset=="cartservice")
                         window.localStorage.setItem("selected_entity_id","cartservice")
+                    }
                     //console.log(warningInfo.entity_name)
                   }}
                   href='/knowledge/graph'
                   >                                
-                    跳转到知识图谱
+                    在图谱中查看相关实体
                     </Link>
                     </Button>
                   </Grid>
@@ -222,7 +225,7 @@ function MetricsPage() {
                   >                                
                   <Link
                   onClick={() => {
-                    if(dataset=="adservice")
+                    if(dataset=="adservice"||dataset=="hs_shop")
                         window.localStorage.setItem("selected_entity_id","adservice")
                     else if(dataset=="cartservice")
                         window.localStorage.setItem("selected_entity_id","cartservice")
@@ -230,7 +233,7 @@ function MetricsPage() {
                   }}
                   href='/exception/warninginfo'
                   >                                
-                    跳转到告警信息
+                    在告警信息中查看相关信息
                     </Link>
                     </Button>
                   </Grid>
@@ -238,12 +241,15 @@ function MetricsPage() {
             </Box>
           </Card>
         </Grid>
+        <Grid item lg={12}>
+             异常分数：异常分数描述了系统偏离正常运行时表现的程度，异常分数越高表示系统发生异常/故障的可能性越大，异常分数为0或者Nan时表示没有检测到异常。
+        </Grid>
         <Grid item lg={12} xs={12}>
         <ChartTranslucent
             labels={displayValue.series.map((v) => v.time.toString())}
             metricData={displayValue.series.map((v) => v.value)}
             scoreData={displayValue.series.map((v) => v.score)}
-            pro={[...Array(50)].map((x)=>0.216)}
+            pro={[...Array(50)].map((x)=>0)}
             />
         </Grid>
         <Grid item lg={12} xs={12}>

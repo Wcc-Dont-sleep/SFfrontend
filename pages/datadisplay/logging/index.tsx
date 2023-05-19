@@ -195,12 +195,20 @@ function LogPage() {
                   >                                
                   <Link
                   onClick={() => {
-                    window.localStorage.setItem("selected_entity_id",dataset)
+                    console.log(datatype)
+                    if(datatype=="abnormal")
+                    {
+                      console.log(datatype)
+                      if(dataset=="adservice"||dataset=="hs_shop")
+                        window.localStorage.setItem("selected_entity_id","adservice")
+                      else if(dataset=="cartservice")
+                        window.localStorage.setItem("selected_entity_id","cartservice")
+                    }
                     //console.log(warningInfo.entity_name)
                   }}
                   href='/knowledge/graph'
                   >                                
-                    跳转到知识图谱
+                    在知识图谱中查看相关实体
                     </Link>
                     </Button>
                   </Grid>
@@ -212,12 +220,15 @@ function LogPage() {
                   >                                
                   <Link
                   onClick={() => {
-                    window.localStorage.setItem("selected_entity_id",dataset)
+                    if(dataset=="adservice"||dataset=="hs_shop")
+                      window.localStorage.setItem("selected_entity_id","adservice")
+                    else if(dataset=="cartservice")
+                      window.localStorage.setItem("selected_entity_id","cartservice")
                     //console.log(warningInfo.entity_name)
                   }}
                   href='/exception/warninginfo'
                   >                                
-                    跳转到告警信息
+                    在告警信息中查看相关信息
                     </Link>
                     </Button>
                   </Grid>

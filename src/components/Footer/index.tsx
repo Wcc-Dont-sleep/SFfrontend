@@ -32,7 +32,7 @@ function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            同济大学软件学院
+            {/* 同济大学软件学院 */}
           </Link>
         </Typography>
       </Box>

@@ -97,7 +97,7 @@ const LogTable: FC<TableProps> = ({ logs, probability, threshold }) => {
 
   const [page, setPage] = useState<number>(0);
   const [limit, setLimit] = useState<number>(5);
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>(window.localStorage.getItem("selected_entity_id"));
   const [filters, setFilters] = useState<Filters>({
     category: null
   });
@@ -243,7 +243,7 @@ const LogTable: FC<TableProps> = ({ logs, probability, threshold }) => {
                 </Typography>{' '}
                 <b>{paginatedLogs.length}</b> <b>{t('Logs')}</b>
               </Box>
-              {probability ? (
+              {/* {probability ? (
                 <Box>
                   <Typography component="span" variant="subtitle1">
                     {t('异常概率')}:
@@ -256,7 +256,7 @@ const LogTable: FC<TableProps> = ({ logs, probability, threshold }) => {
                     {t(`${probability}%`)}:
                   </Typography>{' '}
                 </Box>
-              ) : null}
+              ) : null} */}
               <TablePagination
                 component="div"
                 count={filteredLogs.length}

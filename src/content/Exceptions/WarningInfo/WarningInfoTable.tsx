@@ -156,7 +156,7 @@ const Results: FC<TableProps> = ({ warningInfos }) => {
 
   const [page, setPage] = useState<number>(0);
   const [limit, setLimit] = useState<number>(5);
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>(window.localStorage.getItem("selected_entity_id"));
   const [filters, setFilters] = useState<Filters>({
     status: 'unread'
   });
@@ -369,12 +369,11 @@ const Results: FC<TableProps> = ({ warningInfos }) => {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>{t('#')}</TableCell>
-                    <TableCell>{t('发生时间')}</TableCell>
-                    <TableCell>{t('所在实体')}</TableCell>
-                    <TableCell>{t('异常类型')}</TableCell>
-                    <TableCell>{t('异常描述')}</TableCell>
-                    <TableCell align="center">{t('Actions')}</TableCell>
+                    <TableCell >{t('告警信息ID')}</TableCell>
+                    <TableCell >{t('发生时间')}</TableCell>
+                    <TableCell >{t('所在系统中实体')}</TableCell>
+                    <TableCell >{t('异常描述')}</TableCell>
+                    <TableCell align="center">{t('是否已读')}</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -388,7 +387,7 @@ const Results: FC<TableProps> = ({ warningInfos }) => {
                         key={warningInfo.id}
                         selected={isWarningInfoSelected}
                       >
-                        <TableCell>
+                        <TableCell align="center">
                           <Box display="flex" alignItems="center">
                             <Checkbox
                               checked={isWarningInfoSelected}
@@ -398,7 +397,7 @@ const Results: FC<TableProps> = ({ warningInfos }) => {
                               value={isWarningInfoSelected}
                             />
                             <Box pl={1}>
-                              <Typography noWrap variant="subtitle2">
+                              <Typography align="center" noWrap variant="subtitle2">
                                 {warningInfo.id}
                               </Typography>
                             </Box>
@@ -426,9 +425,9 @@ const Results: FC<TableProps> = ({ warningInfos }) => {
                             </Typography>
                           </Box>
                         </TableCell>
-                        <TableCell>
+                        {/* <TableCell>
                           {warningInfo.category}
-                        </TableCell>
+                        </TableCell> */}
                         <TableCell>
                           <Typography
                           color={warningInfo.status === 'unread' ? 'error' : 'info'}
