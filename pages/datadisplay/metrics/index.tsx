@@ -186,6 +186,7 @@ function MetricsPage() {
                   variant="outlined"
                   onClick={(_) => setTrigger(!trigger)}
                   disabled={!dataset || !model||!status}
+                  style={{width: '250px', height: '50px'}}
                   >
                     异常/故障检测
                     </Button>
@@ -198,6 +199,7 @@ function MetricsPage() {
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}
                   disabled={!dataset || !model||!status}
+                  style={{width: '250px', height: '50px'}}
                   >                                
                   <Link
                   onClick={() => {
@@ -222,6 +224,7 @@ function MetricsPage() {
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}
                   disabled={!dataset || !model||!status}
+                  style={{width: '250px', height: '50px'}}
                   >                                
                   <Link
                   onClick={() => {

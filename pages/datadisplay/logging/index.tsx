@@ -183,6 +183,7 @@ function LogPage() {
                     variant="outlined"
                     disabled={!dataset || !model||!datatype}
                     onClick={(_) => setTrigger(!trigger)}
+                    style={{width: '250px', height: '50px'}}
                     >
                       异常/故障检测
                     </Button>
@@ -192,6 +193,7 @@ function LogPage() {
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}
                   disabled={!dataset || !model||!datatype}
+                  style={{width: '250px', height: '50px'}}
                   >                                
                   <Link
                   onClick={() => {
@@ -217,6 +219,7 @@ function LogPage() {
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}
                   disabled={!dataset || !model||!datatype}
+                  style={{width: '250px', height: '50px'}}
                   >                                
                   <Link
                   onClick={() => {

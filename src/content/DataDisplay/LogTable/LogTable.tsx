@@ -23,7 +23,8 @@ import {
   FormControl,
   Select,
   InputLabel,
-  InputAdornment
+  InputAdornment,
+  colors
 } from '@mui/material';
 import Link from 'src/components/Link';
 import type { Logging } from '@/models/fixed_log';
@@ -301,101 +302,113 @@ const LogTable: FC<TableProps> = ({ logs, probability, threshold }) => {
                   {paginatedLogs.map((log) => {
                     const isLogSelected = selectedLogs.includes(parseInt(log.f1));
                     return (
-                      <TableRow hover key={log.timestamp} selected={isLogSelected}>
-                        <TableCell>
+                      
+                        <TableRow hover key={log.timestamp} selected={isLogSelected}>
+                          <td style={{ backgroundColor: log.isError=="TRUE" ? 'pink' : 'white'}}>
+                          <TableCell>
+                            <Box display="flex" alignItems="center">
+                              <Checkbox
+                                checked={isLogSelected}
+                                onChange={(event) =>
+                                  handleSelectOneWarning(event, parseInt(log.f1))
+                                }
+                                value={isLogSelected}
+                              />
+                              <Box pl={1}>
+                              <Typography noWrap variant="subtitle2" color='black'>
+                                  {log.log_name}
+                                </Typography>
+                              </Box>
+                            </Box>
+                          </TableCell>
+                          </td>
+                          <td style={{ backgroundColor: log.isError=="TRUE" ? 'pink' : 'white'}}>
+                          <TableCell>
+                            <Typography noWrap>
+                              {log.isError}
+                            </Typography>
+                          </TableCell>
+                          </td>
+                          <td style={{ backgroundColor: log.isError=="TRUE" ? 'pink' : 'white'}}>
+                          <TableCell>
                           <Box display="flex" alignItems="center">
-                            <Checkbox
-                              checked={isLogSelected}
-                              onChange={(event) =>
-                                handleSelectOneWarning(event, parseInt(log.f1))
-                              }
-                              value={isLogSelected}
-                            />
-                            <Box pl={1}>
-                              <Typography noWrap variant="subtitle2" color={log.status=="abnormal" ? 'red' : 'black'}>
-                                {log.log_name}
+                              <Typography variant="h5">
+                                {
+                                  <Link
+                                  onClick={() => {
+                                    window.localStorage.setItem("selected_entity_id", log.component.toString())
+                                    //console.log(warningInfo.entity_name)
+                                  }}
+                                  href='/knowledge/graph'
+                                  >
+                                  {log.component}
+                                  </Link>
+                                }
                               </Typography>
                             </Box>
-                          </Box>
-                        </TableCell>
-                        <TableCell>
-                          <Typography noWrap>
-                            {log.isError}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                        <Box display="flex" alignItems="center">
-                            <Typography variant="h5">
-                              {
-                                <Link
-                                onClick={() => {
-                                  window.localStorage.setItem("selected_entity_id", log.component.toString())
-                                  //console.log(warningInfo.entity_name)
-                                }}
-                                href='/knowledge/graph'
-                                >
-                                {log.component}
-                                </Link>
-                              }
+                          </TableCell>
+                          </td>
+                          <td style={{ backgroundColor: log.isError=="TRUE" ? 'pink' : 'white'}}>
+                          <TableCell>
+                            <Typography
+                              // color={
+                              //   threshold
+                              //     ? log.isError!='False'
+                              //       ? 'error'
+                              //       : 'success'
+                              //     : 'info'
+                              // }
+                            >
+                              {log.content}
                             </Typography>
-                          </Box>
-                        </TableCell>
-                        <TableCell>
-                          <Typography
-                            // color={
-                            //   threshold
-                            //     ? log.isError!='False'
-                            //       ? 'error'
-                            //       : 'success'
-                            //     : 'info'
-                            // }
-                          >
-                            {log.content}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
+                          </TableCell>
+                          </td>
+                          <td style={{ backgroundColor: log.isError=="TRUE" ? 'pink' : 'white'}}>
+                          <TableCell>
+                            <Typography noWrap>
+                            {/* {log.timestamp} */}
+                            {format(parseInt(log.timestamp), '2022-MM-dd hh:mm:ss')}
+                            </Typography>
+                          </TableCell>
+                          </td>
+                          {/* <TableCell>
+                            <Typography 
+                            color={threshold ? (
+                              log.isError != 'False'  ? "error" : "success"
+                            ) : "info"}
+                            noWrap
+                            >
+                              {log.level}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
                           <Typography noWrap>
-                          {/* {log.timestamp} */}
-                          {format(parseInt(log.timestamp), '2022-MM-dd hh:mm:ss')}
-                          </Typography>
-                        </TableCell>
-                        {/* <TableCell>
-                          <Typography 
-                          color={threshold ? (
-                            log.isError != 'False'  ? "error" : "success"
-                          ) : "info"}
-                          noWrap
-                          >
-                            {log.level}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                        <Typography noWrap>
-                            {log.time}
-                          </Typography>
+                              {log.time}
+                            </Typography>
+                            </TableCell> */}
+                          {/* <TableCell align="center">
+                            <Typography noWrap>
+                              <Tooltip title={t('View')} arrow>
+                                <IconButton
+                                  component={Link}
+                                  href="#"
+                                  color="primary"
+                                >
+                                  <LaunchTwoToneIcon fontSize="small" />
+                                </IconButton>
+                              </Tooltip>
+                              <Tooltip title={t('Delete')} arrow>
+                                <IconButton
+                                  // onClick={handleConfirmDelete}
+                                  color="primary"
+                                >
+                                  <DeleteTwoToneIcon fontSize="small" />
+                                </IconButton>
+                              </Tooltip>
+                            </Typography>
                           </TableCell> */}
-                        {/* <TableCell align="center">
-                          <Typography noWrap>
-                            <Tooltip title={t('View')} arrow>
-                              <IconButton
-                                component={Link}
-                                href="#"
-                                color="primary"
-                              >
-                                <LaunchTwoToneIcon fontSize="small" />
-                              </IconButton>
-                            </Tooltip>
-                            <Tooltip title={t('Delete')} arrow>
-                              <IconButton
-                                // onClick={handleConfirmDelete}
-                                color="primary"
-                              >
-                                <DeleteTwoToneIcon fontSize="small" />
-                              </IconButton>
-                            </Tooltip>
-                          </Typography>
-                        </TableCell> */}
-                      </TableRow>
+                        </TableRow>
+                      
                     );
                   })}
                 </TableBody>
