@@ -145,7 +145,7 @@ const options = {
 const get_red = (node: Node)=>{
   let mystored=window.localStorage.getItem('selected_entity_id')
   if (mystored=="hs_shop"){
-    mystored="hipster shop"
+    mystored="adservice"
   }
   if (node.id==mystored)
   {
@@ -157,7 +157,8 @@ const get_red = (node: Node)=>{
 }
 
 const get_node_image = (label: string) => {
-
+          //这里
+  localStorage.removeItem('selected_entity_id');
   const Selected = [
     '/static/images/icons/selected.jpg',
   ]
@@ -309,7 +310,7 @@ function AccountBalance() {
         let stored = window.localStorage.getItem('selected_entity_id')
         //let tored=window.localStorage.getItem('')
         if (stored=="hs_shop"){
-          stored="hipster shop"
+          stored="adservice"
         }
         if (stored) {
           let node = origin.nodes.find((o => o.id === stored));
