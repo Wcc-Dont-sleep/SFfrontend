@@ -66,7 +66,7 @@ function Overview() {
             >
               <Box />
               <Box>
-                <Button
+                {/* <Button
                   component={Link}
                   href="/login"
                   variant="contained"
@@ -74,7 +74,7 @@ function Overview() {
                 >
                   登录
                 </Button>
-                
+                 */}
               </Box>
             </Box>
           </Box>
@@ -89,6 +89,9 @@ function Overview() {
             href="https://sse.tongji.edu.cn/"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              window.localStorage.setItem("selected_entity_id","")
+            }}
           >
             {/* 同济大学软件学院 */}
           </Link>

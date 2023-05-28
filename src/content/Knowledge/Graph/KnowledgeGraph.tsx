@@ -158,7 +158,8 @@ const get_red = (node: Node)=>{
 
 const get_node_image = (label: string) => {
           //这里
-  localStorage.removeItem('selected_entity_id');
+  window.localStorage.setItem("selected_entity_id", "");
+  //localStorage.removeItem('selected_entity_id');
   const Selected = [
     '/static/images/icons/selected.jpg',
   ]

@@ -1,5 +1,5 @@
 export default class GlobalConfig {
-    private static backendURL: string = 'http://localhost:8080';
+    private static backendURL: string = 'http://10.60.38.173:30179';
 
     public static getBackendURL = () => {
         return this.backendURL;
