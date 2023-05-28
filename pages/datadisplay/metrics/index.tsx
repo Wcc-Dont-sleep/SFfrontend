@@ -17,6 +17,7 @@ import { useRefMounted } from 'src/hooks/useRefMounted';
 import { timeSeriesApi } from 'src/apis/TimeSeriesApi';
 import type { TimeSeriesDisplay } from 'src/models/timeseries';
 import Link from 'src/components/Link';
+import { CommentsDisabledOutlined } from '@mui/icons-material';
 
 function MetricsPage() {
   const isMountedRef = useRefMounted();
@@ -40,6 +41,10 @@ function MetricsPage() {
 
   const getMetrics = useCallback(async (dataset, model, status,start, end) => {
     try {
+      const dataset1=dataset.split("-")
+      dataset=dataset1[0]
+      status=dataset1[1]
+      console.log(dataset,status)
       const response = await timeSeriesApi.getTimeSeries(dataset, model, status,start, end);
 
       if (isMountedRef()) {
@@ -116,7 +121,7 @@ function MetricsPage() {
                   alignItems="stretch"
                   spacing={5}
                 >
-                  <Grid item xs={2}>
+                  {/* <Grid item xs={2}>
                     <FormControl sx={{ m: 1, minWidth: 200 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         DataType
@@ -136,9 +141,9 @@ function MetricsPage() {
                       </Select>
                       <FormHelperText>在此处选择数据类型</FormHelperText>
                     </FormControl>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <FormControl sx={{ m: 1, minWidth: 200 }}>
+                  </Grid> */}
+                  <Grid item xs={3}>
+                    <FormControl sx={{ m: 1, minWidth: 300 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Dataset
                       </InputLabel>
@@ -152,8 +157,10 @@ function MetricsPage() {
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        <MenuItem value={"adservice"}>运维系统数据集-adservice</MenuItem>
-                        <MenuItem value={"cartservice"}>运维系统数据集-cartservice</MenuItem>
+                        <MenuItem value={"adservice-normal"}>运维系统数据集-adservice-normal</MenuItem>
+                        <MenuItem value={"cartservice-normal"}>运维系统数据集-cartservice-normal</MenuItem>
+                        <MenuItem value={"adservice-abnormal"}>运维系统数据集-adservice-abnormal</MenuItem>
+                        <MenuItem value={"cartservice-abnormal"}>运维系统数据集-cartservice-abnormal</MenuItem>
                         {/* <MenuItem value={"AIOps"}>运维系统2</MenuItem> */}
                       </Select>
                       <FormHelperText>在此处选择数据集</FormHelperText>
@@ -186,7 +193,7 @@ function MetricsPage() {
                   variant="outlined"
                   onClick={(_) => setTrigger(!trigger)}
                   disabled={!dataset || !model||!status}
-                  style={{width: '250px', height: '50px'}}
+                  style={{width: '200px', height: '50px'}}
                   >
                     异常/故障检测
                     </Button>
@@ -199,7 +206,7 @@ function MetricsPage() {
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}
                   disabled={!dataset || !model||!status}
-                  style={{width: '250px', height: '50px'}}
+                  style={{width: '200px', height: '50px'}}
                   >                                
                   <Link
                   onClick={() => {
@@ -224,7 +231,7 @@ function MetricsPage() {
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}
                   disabled={!dataset || !model||!status}
-                  style={{width: '250px', height: '50px'}}
+                  style={{width: '200px', height: '50px'}}
                   >                                
                   <Link
                   onClick={() => {
@@ -236,7 +243,7 @@ function MetricsPage() {
                   }}
                   href='/exception/warninginfo'
                   >                                
-                    在告警信息中查看相关信息
+                    告警信息中查看相关信息
                     </Link>
                     </Button>
                   </Grid>
