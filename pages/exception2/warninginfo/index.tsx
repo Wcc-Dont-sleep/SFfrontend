@@ -12,7 +12,7 @@ import type { WarningInfo } from '@/models/warning_info';
 
 import { Grid } from '@mui/material';
 import { useRefMounted } from 'src/hooks/useRefMounted';
-import WarningInfoTable from 'src/content/Exceptions/WarningInfo/WarningInfoTable';
+import WarningInfoTable from 'src/content/Exceptions2/WarningInfo/WarningInfoTable';
 import { warningInfoApi } from '@/apis/WarningInfoApi';
 
 function WarningInformationPage() {
@@ -22,7 +22,7 @@ function WarningInformationPage() {
   const getWarningInfos = useCallback(async () => {
     try {
       const response = await warningInfoApi.getWarnings(0, 2147483647000);
-
+      
       if (isMountedRef()) {
         setWarningInfos(response);
       }
@@ -53,7 +53,7 @@ function WarningInformationPage() {
         <title>Warnings</title>
       </Head>
       <PageTitleWrapper>
-        {PageHeader("时间序列告警信息", "系统的所有异常告警信息")}
+        {PageHeader("日志告警信息", "系统的所有异常告警信息")}
       </PageTitleWrapper>
 
       <Grid
@@ -65,7 +65,7 @@ function WarningInformationPage() {
         spacing={3}
       >
         <Grid item xs={12}>
-          <WarningInfoTable warningInfos={warningInfos} />
+          <WarningInfoTable warningInfos={warningInfos.splice(100)} />
         </Grid>
       </Grid>
       <Footer />

@@ -156,7 +156,6 @@ const Results: FC<TableProps> = ({ warningInfos }) => {
 
   const [page, setPage] = useState<number>(0);
   const [limit, setLimit] = useState<number>(5);
-  // const [datatype,setDatatype] = React.useState(typeof window !== "undefined" ? window.localStorage.getItem("selected_entity_id") : "");
   const [query, setQuery] = useState(typeof window !== "undefined" ? window.localStorage.getItem("selected_entity_id") : "");
   const [filters, setFilters] = useState<Filters>({
     status: 'unread'
@@ -254,8 +253,8 @@ const Results: FC<TableProps> = ({ warningInfos }) => {
   };
 
   const selectInfo=(info:string)=>{
+    // const [datatype,setDatatype] = React.useState(typeof window !== "undefined" ? window.localStorage.getItem('selected_entity_id') : "");
       let mystored=typeof window !== "undefined" ? window.localStorage.getItem('selected_entity_id') : "";
-      // let mystored=window.localStorage.getItem('selected_entity_id')
       if (mystored){
         if (info==mystored){
           return true
@@ -276,7 +275,7 @@ const Results: FC<TableProps> = ({ warningInfos }) => {
         }}
       >
         <Grid alignItems="center" container spacing={3}>
-          <Grid item xs={12} lg={5} md={5}>
+          <Grid item xs={12} lg={5} md={6}>
             <TextField
               InputProps={{
                 startAdornment: (
@@ -320,9 +319,9 @@ const Results: FC<TableProps> = ({ warningInfos }) => {
                   onClick={() => {
                     window.localStorage.setItem("selected_entity_id","")
                   }}
-                  href='/datadisplay/metrics'
+                  href='/datadisplay/logging'
                   >                                
-                    前往时间序列
+                    前往日志
                     </Link>
                     </Button>
           </Grid>

@@ -95,14 +95,9 @@ function NodeDetail() {
 
                 <Grid item xs={2}>
 
-                <Button variant="outlined">
+                 <Button variant="outlined">
                   <Link
                   onClick={() => {
-
-                    // if(dataset=="adservice"||dataset=="hs_shop")
-                    //     window.localStorage.setItem("selected_entity_id","adservice")
-                    // else if(dataset=="cartservice")
-                    //     window.localStorage.setItem("selected_entity_id","cartservice")
                       console.log(111)
                   }}
                   href='/datadisplay/logging'
@@ -111,7 +106,7 @@ function NodeDetail() {
                     </Link>
                       </Button>
  
-                  {/* <GraphContext.Consumer>
+                   {/* <GraphContext.Consumer>
 
                     {({ open_logging }) => (
 
@@ -120,11 +115,6 @@ function NodeDetail() {
                         fullWidth>
                       <Link
                   onClick={() => {
-                    // if(dataset=="adservice"||dataset=="hs_shop")
-                    //     window.localStorage.setItem("selected_entity_id","adservice")
-                    // else if(dataset=="cartservice")
-                    //     window.localStorage.setItem("selected_entity_id","cartservice")
-                    //console.log(warningInfo.entity_name)
                   }}
                   href='/datadisplay/logging'
                   >                                
@@ -132,39 +122,32 @@ function NodeDetail() {
                     打开日志
                       </Button>
 
-                    )}
-                  </GraphContext.Consumer> */}
+                    )} */}
+                  {/* </GraphContext.Consumer> */}
 
                 </Grid>
 
-                <Grid item xs={2.5}>
+                 <Grid item xs={2.5}>
 
                   <GraphContext.Consumer>
 
                     {({ open_metrics }) => (
 
                       <Button variant="outlined"
-                        // onClick={open_metrics}
                         >
                          <Link
                         onClick={() => {
-                         // if(dataset=="adservice"||dataset=="hs_shop")
-                        //     window.localStorage.setItem("selected_entity_id","adservice")
-                       // else if(dataset=="cartservice")
-                        //     window.localStorage.setItem("selected_entity_id","cartservice")
-                       //console.log(warningInfo.entity_name)
                        }}
                   href='/datadisplay/metrics'
                   >         
                     打开时间序列                       
                     </Link>
-                    {/* 打开时间序列       */}
                       </Button>
 
                     )}
                   </GraphContext.Consumer>
 
-                </Grid>
+                </Grid> 
 
 
               </Grid>

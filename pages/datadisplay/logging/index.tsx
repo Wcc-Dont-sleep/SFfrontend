@@ -16,14 +16,15 @@ import LogTable from '@/content/DataDisplay/LogTable/LogTable';
 import { loggingApi } from '@/apis/LoggingApi';
 import { FixedLogs } from 'src/models/fixed_log';
 import Link from 'src/components/Link';
-
 function LogPage() {
   const isMountedRef = useRefMounted();
   const [logs, setLogs] = useState<FixedLogs>(null);
   const theme = useTheme();
-  const[datatype,setDatatype]=React.useState('');
-  const [dataset, setDataset] = React.useState('');
-  const [model, setModel] = React.useState('');
+  const [datatype,setDatatype] = React.useState(typeof window !== "undefined" ? window.localStorage.getItem("loggingdatatype") : "");
+  // const[datatype,setDatatype]=React.useState(window.localStorage.getItem("loggingdatatype") || "");
+  const [dataset, setDataset] = React.useState(typeof window !== "undefined" ? window.localStorage.getItem("loggingdataset") : "");
+  // const [dataset, setDataset] = React.useState(window.localStorage.getItem("loggingdataset")|| "");
+  const [model, setModel] = React.useState('LogAttention');
   const [trigger, setTrigger] = React.useState(false);
 
 
@@ -114,7 +115,7 @@ function LogPage() {
                   spacing={6}
                 >
                   <Grid item xs={2}>
-                    <FormControl sx={{ m: 1, minWidth: 200 }}>
+                    <FormControl sx={{ m: 1, minWidth: 150 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Datatype
                       </InputLabel>
@@ -158,7 +159,7 @@ function LogPage() {
                     </FormControl>
                   </Grid>
                   <Grid item xs={2}>
-                    <FormControl sx={{ m: 1, minWidth: 200 }}>
+                    <FormControl sx={{ m: 1, minWidth: 150 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Model
                       </InputLabel>
@@ -183,7 +184,7 @@ function LogPage() {
                     variant="outlined"
                     disabled={!dataset || !model||!datatype}
                     onClick={(_) => setTrigger(!trigger)}
-                    style={{width: '250px', height: '50px'}}
+                    style={{width: '200px', height: '50px'}}
                     >
                       异常/故障检测
                     </Button>
@@ -193,11 +194,13 @@ function LogPage() {
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}
                   disabled={!dataset || !model||!datatype}
-                  style={{width: '250px', height: '50px'}}
+                  style={{width: '200px', height: '50px'}}
                   >                                
                   <Link
                   onClick={() => {
                     console.log(datatype)
+                    window.localStorage.setItem("loggingdataset",dataset)
+                    window.localStorage.setItem("loggingdatatype",datatype)
                     if(datatype=="abnormal")
                     {
                       console.log(datatype)
@@ -210,7 +213,7 @@ function LogPage() {
                   }}
                   href='/knowledge/graph'
                   >                                
-                    在知识图谱中查看相关实体
+                    知识图谱中查看相关实体
                     </Link>
                     </Button>
                   </Grid>
@@ -219,19 +222,24 @@ function LogPage() {
                   variant="outlined"
                   // onClick={(_) => setTrigger(!trigger)}
                   disabled={!dataset || !model||!datatype}
-                  style={{width: '250px', height: '50px'}}
+                  style={{width: '200px', height: '50px'}}
                   >                                
                   <Link
                   onClick={() => {
+                    window.localStorage.setItem("loggingdataset",dataset)
+                    window.localStorage.setItem("loggingdatatype",datatype)
+                    // console.log("imhere!!!!!!!!!")
+                    // console.log(dataset)
+                    // console.log(datatype)
                     if(dataset=="adservice"||dataset=="hs_shop")
                       window.localStorage.setItem("selected_entity_id","adservice")
                     else if(dataset=="cartservice")
                       window.localStorage.setItem("selected_entity_id","cartservice")
                     //console.log(warningInfo.entity_name)
                   }}
-                  href='/exception/warninginfo'
+                  href='/exception2/warninginfo'
                   >                                
-                    在告警信息中查看相关信息
+                    告警信息中查看相关信息
                     </Link>
                     </Button>
                   </Grid>

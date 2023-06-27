@@ -434,7 +434,7 @@ function AccountBalance() {
           </Box>
 
         </Grid>
-        <Grid item xs={3}>
+        {/* <Grid item xs={3}>
           <Box p={4} paddingTop={13}>
 
           <Button variant='outlined' fullWidth>
@@ -446,7 +446,7 @@ function AccountBalance() {
           </Box>
           
           
-        </Grid>
+        </Grid> */}
         <GraphContext.Provider value={{ current_node, logging_open, metrics_open, unselect, close_logging, close_metrics, open_logging, open_metrics }}>
           <Grid item xs={12} md={12}>
             <Box>

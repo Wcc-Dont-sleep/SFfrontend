@@ -53,7 +53,7 @@ function WarningInformationPage() {
         <title>Warnings</title>
       </Head>
       <PageTitleWrapper>
-        {PageHeader("时间序列告警信息", "系统的所有异常告警信息")}
+        {PageHeader("告警信息", "系统的所有异常告警信息")}
       </PageTitleWrapper>
 
       <Grid

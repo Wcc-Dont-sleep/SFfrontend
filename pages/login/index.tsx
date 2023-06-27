@@ -14,7 +14,7 @@ const LoginPage=()=>{
 
     useEffect(()=>{
         GlobalConfig.setFrontendURL(window.location.host);
-
+        
         setFlag(true);
     })
 

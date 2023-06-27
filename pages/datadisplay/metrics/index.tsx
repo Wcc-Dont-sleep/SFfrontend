@@ -18,14 +18,16 @@ import { timeSeriesApi } from 'src/apis/TimeSeriesApi';
 import type { TimeSeriesDisplay } from 'src/models/timeseries';
 import Link from 'src/components/Link';
 import { CommentsDisabledOutlined } from '@mui/icons-material';
+import { isJsxFragment } from 'typescript';
 
 function MetricsPage() {
   const isMountedRef = useRefMounted();
   const theme = useTheme();
   //const [datatype, setDatatype] = useState('Normal');
-  const [dataset, setDataset] = useState('运维系统2');
-  const [model, setModel] = useState('CNN');
-  const [status, setStatus] = useState('Normal');
+  const [dataset, setDataset] = useState(typeof window !== "undefined" ? window.localStorage.getItem("metrixdataset") : "");
+  // const [dataset, setDataset] = useState(window.localStorage.getItem("metrixdataset"));
+  const [model, setModel] = useState('SAT-CNN');
+  const [status, setStatus] = useState("normal");
   const [displayValue, setDisplayValue] = useState<TimeSeriesDisplay>(null);
   const [trigger, setTrigger] = useState<boolean>(false);
 
@@ -41,10 +43,16 @@ function MetricsPage() {
 
   const getMetrics = useCallback(async (dataset, model, status,start, end) => {
     try {
-      const dataset1=dataset.split("-")
-      dataset=dataset1[0]
-      status=dataset1[1]
-      console.log(dataset,status)
+      // console.log(dataset)
+      if(dataset==null)
+      {
+         status=""
+      }
+      else{
+        const dataset1=dataset.split("-")
+        dataset=dataset1[0]
+        status=dataset1[1]
+      }
       const response = await timeSeriesApi.getTimeSeries(dataset, model, status,start, end);
 
       if (isMountedRef()) {
@@ -210,11 +218,15 @@ function MetricsPage() {
                   >                                
                   <Link
                   onClick={() => {
-                    if(status=="abnormal")
+                    console.log("onclick")
+                    console.log(dataset)
+                    window.localStorage.setItem("metrixdataset",dataset)
+                    if(dataset=="adservice-abnormal")
                     {
-                      if(dataset=="adservice"||dataset=="hs_shop")
                         window.localStorage.setItem("selected_entity_id","adservice")
-                      else if(dataset=="cartservice")
+                    }
+                    else if(dataset=="cartservice-abnormal")
+                    {
                         window.localStorage.setItem("selected_entity_id","cartservice")
                     }
                     //console.log(warningInfo.entity_name)
@@ -235,10 +247,21 @@ function MetricsPage() {
                   >                                
                   <Link
                   onClick={() => {
-                    if(dataset=="adservice"||dataset=="hs_shop")
+                    console.log("onclickalarm")
+                    window.localStorage.setItem("metrixdataset",dataset)
+                    console.log(window.localStorage.getItem("metrixdataset"))
+                    if(dataset=="adservice-abnormal")
+                    {
                         window.localStorage.setItem("selected_entity_id","adservice")
-                    else if(dataset=="cartservice")
+                    }
+                    else if(dataset=="cartservice-abnormal")
+                    {
                         window.localStorage.setItem("selected_entity_id","cartservice")
+                    }
+                    else if(dataset=="cartservice-normal"||dataset=="adservice-normal")
+                    {
+                        window.localStorage.setItem("selected_entity_id","normal")
+                    }
                     //console.log(warningInfo.entity_name)
                   }}
                   href='/exception/warninginfo'

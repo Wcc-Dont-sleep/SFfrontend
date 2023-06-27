@@ -193,7 +193,14 @@ function SidebarMenu() {
                     className={currentRoute === '="/' ? 'active' : ''}
                     disableRipple
                     component="a"
-                    onClick={closeSidebar}
+                    onClick={() => {
+                      closeSidebar;
+                      window.localStorage.setItem("loggingdataset","")
+                      window.localStorage.setItem("loggingdatatype","")
+                      window.localStorage.setItem("metrixdataset","")
+                      window.localStorage.setItem("selected_entity_id","")
+                    }}
+                    // onClick={closeSidebar}
                     startIcon={<DesignServicesTwoToneIcon />}
                   >
                     首页
@@ -222,7 +229,10 @@ function SidebarMenu() {
                     }
                     disableRipple
                     component="a"
-                    onClick={closeSidebar}
+                    onClick={() => {
+                      closeSidebar;
+                      window.localStorage.setItem("selected_entity_id","")
+                    }}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
                     运维对象知识图谱
@@ -255,7 +265,11 @@ function SidebarMenu() {
                     }
                     disableRipple
                     component="a"
-                    onClick={closeSidebar}
+                    onClick={() => {
+                      closeSidebar;
+                      window.localStorage.setItem("metrixdataset","")
+                      window.localStorage.setItem("selected_entity_id","")
+                    }}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
                     时间序列数据的异常/故障检测
@@ -270,7 +284,12 @@ function SidebarMenu() {
                     }
                     disableRipple
                     component="a"
-                    onClick={closeSidebar}
+                    onClick={() => {
+                      closeSidebar;
+                      window.localStorage.setItem("loggingdataset","")
+                      window.localStorage.setItem("loggingdatatype","")
+                      window.localStorage.setItem("selected_entity_id","")
+                    }}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
                     日志数据的异常/故障检测
@@ -299,7 +318,10 @@ function SidebarMenu() {
                     }
                     disableRipple
                     component="a"
-                    onClick={closeSidebar}
+                    onClick={() => {
+                      closeSidebar;
+                      window.localStorage.setItem("selected_entity_id","")
+                    }}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
                     时间序列数据检测的异常/故障告警
@@ -307,14 +329,17 @@ function SidebarMenu() {
                 </NextLink>
               </ListItem>
               <ListItem component="div">
-                <NextLink href="/exception/warninginfo" passHref>
+                <NextLink href="/exception2/warninginfo" passHref>
                   <Button
                     className={
-                      currentRoute === '/exception/warninginfo' ? 'active' : ''
+                      currentRoute === '/exception2/warninginfo' ? 'active' : ''
                     }
                     disableRipple
                     component="a"
-                    onClick={closeSidebar}
+                    onClick={() => {
+                      closeSidebar;
+                      window.localStorage.setItem("selected_entity_id","")
+                    }}
                     startIcon={<BrightnessLowTwoToneIcon />}
                   >
                     日志数据检测的异常/故障告警
