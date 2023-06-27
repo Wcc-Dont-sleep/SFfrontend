@@ -18,6 +18,7 @@ import {
   Paper
 } from '@mui/material';
 import TrendingUp from '@mui/icons-material/TrendingUp';
+import { useNavigate } from 'react-router-dom';
 import Text from 'src/components/Text';
 import { Chart } from 'src/components/Chart';
 import type { ApexOptions } from 'apexcharts';
@@ -37,6 +38,9 @@ import Link from 'src/components/Link';
 
 
 function NodeDetail() {
+  const handleGoBack = () => {
+    window.history.back();
+  };
 
   return (
     <>
@@ -94,17 +98,15 @@ function NodeDetail() {
                 </Grid>
 
                 <Grid item xs={2}>
+                <div>
+                       <Button variant="outlined" onClick={handleGoBack} >
+                          返回
+                        </Button>
+                </div>
 
-                 <Button variant="outlined">
-                  <Link
-                  onClick={() => {
-                      console.log(111)
-                  }}
-                  href='/datadisplay/logging'
-                  >         
-                  打开日志                       
-                    </Link>
-                      </Button>
+               
+
+                 
  
                    {/* <GraphContext.Consumer>
 
@@ -129,23 +131,7 @@ function NodeDetail() {
 
                  <Grid item xs={2.5}>
 
-                  <GraphContext.Consumer>
-
-                    {({ open_metrics }) => (
-
-                      <Button variant="outlined"
-                        >
-                         <Link
-                        onClick={() => {
-                       }}
-                  href='/datadisplay/metrics'
-                  >         
-                    打开时间序列                       
-                    </Link>
-                      </Button>
-
-                    )}
-                  </GraphContext.Consumer>
+                  
 
                 </Grid> 
 
